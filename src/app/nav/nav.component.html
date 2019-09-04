@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar></mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item (click)="goTo('/')">Предметы</a>
+      <a mat-list-item (click)="goTo('/students')">Ученики</a>
+      <a class="settings" mat-list-item  (click)="goTo('/settings')"
+         *ngIf="dataService.getCurrentUser.status === 'admin' ">
+        <button class="settings-button" mat-raised-button color="primary">НАСТРОЙКИ</button>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>ClassBook</span>
+      <div class="radio">
+        <mat-radio-group [(ngModel)]="currentUser.status">
+          <mat-radio-button *ngFor="let status of statuses"
+                            [value]="status.status"
+                            (change)="changeStatus($event.value)"
+          >{{ status.name }}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+    </mat-toolbar>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,46 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.menu-button {
+  margin: 10px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.radio {
+  width: 100%;
+  text-align: right;
+  font-size: 16px;
+  padding-right: 20px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+::ng-deep.mat-radio-outer-circle {
+  border-color: white;
+}
+
+
+button.settings-button {
+  width: 100%;
+  margin-left: 0!important;
+}

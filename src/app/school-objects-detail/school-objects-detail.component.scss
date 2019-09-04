@@ -1,0 +1,64 @@
+table {
+  padding: 78px!important;
+  border-spacing: 0;
+  border: 0 #fff;
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+}
+
+mat-form-field {
+  margin-left: 20px;
+}
+
+mat-card input {
+  text-align: center;
+  width: 100%;
+}
+
+td {
+  text-align: center;
+  width: 20px;
+}
+
+.names {
+  width: 20%;
+  text-align: left;
+  font-size: 14px;
+  min-width: 100px;
+}
+
+th {
+  font-size: 12px;
+}
+
+th:first-of-type {
+  text-align: left;
+  padding-left: 20px;
+}
+
+button {
+  min-width: unset;
+  height: 37px;
+}
+
+td.names {
+  min-width: 150px;
+}
+
+caption {
+  padding-bottom: 10px;
+}
+
+.students-has-not {
+  padding-top: 20px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 12px;
+  span {
+    &:hover {
+      color: #3f51b5;
+      text-decoration: underline;
+    }
+  }
+}

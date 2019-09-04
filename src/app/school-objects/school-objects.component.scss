@@ -1,0 +1,27 @@
+.icon-clear {
+  color: grey;
+  &:hover {
+    color: red;
+  }
+}
+
+.add-obj {
+  display: flex;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.school-object {
+  padding: 10px;
+  margin-left: 20px;
+  &:hover {
+    text-decoration: underline;
+    color: #3f51b5;
+  }
+}
+
+::ng-deep.mat-checkbox {
+  margin-bottom: 2px;
+}

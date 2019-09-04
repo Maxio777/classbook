@@ -1,0 +1,23 @@
+.users {
+  display: flex;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user {
+  flex-grow: 1;
+}
+
+h2 {
+  padding-left: 50px;
+}
+
+li {
+  list-style-type: none;
+  padding: 4px;
+}
+
+.mat-card {
+  margin: 20px;
+}

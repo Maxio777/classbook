@@ -1,0 +1,57 @@
+<h1>
+  {{ currentObject.name }}
+</h1>
+<hr>
+
+<div>
+  Добавить урок
+  <button mat-raised-button color="primary" (click)="addLesson()"
+          [disabled]="!dataService.getCurrentUser.accessRights.addLesson">
+    <mat-icon>add</mat-icon>
+  </button>
+  Удалить урок
+  <mat-form-field>
+    <input #inp matInput type="number" placeholder="Введите номер урока"
+           [disabled]="!dataService.getCurrentUser.accessRights.deleteLesson">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="deleteLesson(inp.value - 1);"
+          [disabled]="!dataService.getCurrentUser.accessRights.deleteLesson">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+
+
+
+<mat-card>
+  <table border="1">
+    <caption>Журнал</caption>
+    <tr>
+      <th>Ученики</th>
+      <th *ngFor="let lesson of currentLessons; let i = index">Урок {{ i + 1 }}</th>
+    </tr>
+    <tr class="names" *ngFor="let student of students; let indexStudent = index">
+      <td class="names">
+        {{indexStudent + 1}}. {{ getStudentName(student?.id) }}
+      </td>
+      <td *ngFor="let lesson of currentLessons; let indexCurrentLesson = index">
+        <span
+          *ngIf="!dataService.getCurrentUser.accessRights.addMark"
+        >{{ lesson.students[indexStudent].mark }}</span>
+        <input type="text"
+               *ngIf="dataService.getCurrentUser.accessRights.addMark"
+               [value]="lesson.students[indexStudent].mark"
+               (blur)="addMark($event, indexStudent, indexCurrentLesson)"
+        > </td>
+    </tr>
+
+  </table>
+
+  <div class="students-has-not" *ngIf="!studentsAll.length">
+    <hr>
+    <p>Учеников в данный момент нет, их нужно создать.</p>
+    Перейдите пожалуйста в раздел
+    <span (click)="goTo('/students')">
+      <strong>Ученики</strong>
+    </span></div>
+</mat-card>
+

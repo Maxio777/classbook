@@ -1,0 +1,53 @@
+<h1>Ученики</h1>
+
+<div [formGroup]="form" class="add-form">
+
+  <mat-form-field>
+    <mat-label>Фамилия</mat-label>
+    <input matInput placeholder="Фамилия" formControlName="last_name" appInputTrim (inputTrim)="form.get('last_name').setValue($event)" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Имя</mat-label>
+    <input matInput placeholder="Имя" formControlName="first_name" appInputTrim (inputTrim)="form.get('first_name').setValue($event)" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Отчество</mat-label>
+    <input matInput placeholder="Отчество" formControlName="middle_name" appInputTrim (inputTrim)="form.get('middle_name').setValue($event)">
+  </mat-form-field>
+
+</div>
+
+<button mat-raised-button color="primary" class="add-button"
+        (click)="addStudent()"
+        [disabled]="form.invalid
+        || !dataService.getCurrentUser.accessRights.addStudent">Добавить</button>
+<button mat-raised-button color="accent" class="add-button"
+        (click)="editStudent()"
+        [disabled]="form.invalid
+        || !currentStudent
+        || !dataService.getCurrentUser.accessRights.editStudent">Обновить</button>
+<button mat-raised-button color="warn" class="add-button"
+        (click)="deleteStudent()"
+        [disabled]="form.invalid
+        || !currentStudent
+        || !dataService.getCurrentUser.accessRights.deleteStudent">Удалить</button>
+
+<hr>
+
+<p *ngIf="!hasStudents">В настоящий момент нет ученков, их нужно создать.</p>
+
+    <ol>
+      <li *ngFor="let student of students">
+          <div class="student">
+            <label>
+              <mat-checkbox
+                (change)="offOtherCheck(student, student.id, student.selected);"
+                [(ngModel)]="student.selected">
+              </mat-checkbox>
+              {{ student.last_name }} {{ student.first_name }} {{ student.middle_name }}
+            </label>
+          </div>
+      </li>
+    </ol>

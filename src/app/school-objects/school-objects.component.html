@@ -1,0 +1,39 @@
+<h1>Предметы</h1>
+<div class="add-obj">
+  <mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="Введите название предмета"
+           [disabled]="(!dataService.getCurrentUser.accessRights.addSchoolObject
+                    && !dataService.getCurrentUser.accessRights.editSchoolObject
+                    && !dataService.getCurrentUser.accessRights.deleteSchoolObject)"
+           [(ngModel)]="currentObjectName">
+  </mat-form-field>
+</div>
+
+<button class="add-button" mat-raised-button color="primary"
+        (click)="addSubjects()"
+        [disabled]="!currentObjectName || !dataService.getCurrentUser.accessRights.addSchoolObject">Добавить</button>
+<button mat-raised-button color="accent" class="add-button"
+        (click)="editObject()"
+        [disabled]="!hasCurrentIndex || !currentObjectName || !dataService.getCurrentUser.accessRights.editSchoolObject">Обновить</button>
+<button class="add-button" mat-raised-button color="warn"
+        (click)="deleteObject()"
+        [disabled]="!hasCurrentIndex || !currentObjectName || !dataService.getCurrentUser.accessRights.deleteSchoolObject">Удалить</button>
+
+<hr>
+
+<p *ngIf="!hasSchoolObjects">В настоящий момент предметов нет, их нужно создать.</p>
+
+<mat-list role="list">
+  <mat-list-item role="listitem" *ngFor="let obj of schoolObjects">
+    <mat-checkbox
+      (change)="offOtherCheck(obj);"
+      [(ngModel)]="obj.selected"
+      [disabled]="!(dataService.getCurrentUser.accessRights.editSchoolObject
+                  || dataService.getCurrentUser.accessRights.deleteSchoolObject)"
+    >
+    </mat-checkbox>
+    <h3 class="cursor-pointer school-object" (click)="goToSubject(obj.name)">{{ obj.name }}</h3>
+  </mat-list-item>
+</mat-list>
+
+

@@ -1,0 +1,18 @@
+.add-form {
+  width: 100%;
+  display: flex;
+}
+
+mat-form-field, .add-button {
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.student {
+  padding: 10px;
+}
+
+.mat-checkbox {
+  margin-right: 10px;
+}
